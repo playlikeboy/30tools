@@ -57,7 +57,7 @@ export default function LandingPage() {
                 <p className="text-sm text-muted-foreground">Free Online Toolkit</p>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-4">
               <Link href="/search">
                 <Button variant="ghost">
@@ -82,7 +82,7 @@ export default function LandingPage() {
                 Your Ultimate Online Toolkit
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Fast, free, and privacy-focused tools for image, video, audio, PDF, and text processing. 
+                Fast, free, and privacy-focused tools for image, video, audio, PDF, and text processing.
                 No sign-up required, no watermarks added.
               </p>
 
@@ -139,7 +139,7 @@ export default function LandingPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Tool Categories</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Choose from our comprehensive collection of free online tools, 
+                Choose from our comprehensive collection of free online tools,
                 organized by category for easy discovery.
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function LandingPage() {
                           </Badge>
                         )}
                       </div>
-                      
+
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">
                           {category.tools?.length || 0} tools
