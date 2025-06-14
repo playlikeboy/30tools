@@ -8,6 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { COMPRESSION_LIMITS, COMPRESSION_MESSAGES } from '@/constants/image/compression';
+import { SUPPORTED_FORMATS } from '@/constants/image/formats';
+import { IMAGE_COMPRESSOR_FAQS, WH_QUESTIONS_CONTENT } from '@/constants/seo/image-faqs';
 import {
     UploadIcon,
     DownloadIcon,
@@ -86,14 +90,10 @@ export default function ImageCompressionTool() {
             const img = new Image();
 
             img.onload = () => {
-                // Set canvas dimensions
                 canvas.width = img.width;
                 canvas.height = img.height;
-
-                // Draw image on canvas
                 ctx.drawImage(img, 0, 0);
 
-                // Compress image
                 canvas.toBlob((blob) => {
                     resolve({
                         blob,
@@ -152,8 +152,6 @@ export default function ImageCompressionTool() {
     };
 
     const downloadAllAsZip = async () => {
-        // This would require a zip library like JSZip
-        // For now, we'll download files individually
         files.forEach(file => {
             if (file.status === 'completed') {
                 setTimeout(() => downloadFile(file), 100);
@@ -354,7 +352,7 @@ export default function ImageCompressionTool() {
 
                 {/* Compress Button */}
                 {files.length > 0 && files.some(f => f.status === 'pending') && (
-                    <div className="text-center">
+                    <div className="text-center mb-12">
                         <Button
                             onClick={handleCompress}
                             disabled={isCompressing}
@@ -375,6 +373,49 @@ export default function ImageCompressionTool() {
                         </Button>
                     </div>
                 )}
+
+                {/* WH-Questions Section for SEO */}
+                <Separator className="my-12" />
+
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold mb-4">Everything You Need to Know About Image Compression</h2>
+                        <p className="text-muted-foreground text-lg">
+                            Get answers to common questions about image compression and optimization
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        {WH_QUESTIONS_CONTENT.map((item, index) => (
+                            <Card key={index}>
+                                <CardHeader>
+                                    <CardTitle className="text-lg text-primary">{item.question}</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground">{item.answer}</p>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+
+                {/* FAQ Section for Rich Snippets */}
+                <Separator className="my-8" />
+                <div className="mb-8">
+                    <h2 className="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h2>
+                    <div className="max-w-4xl mx-auto">
+                        <Accordion type="single" collapsible className="w-full">
+                            {IMAGE_COMPRESSOR_FAQS.map((faq, index) => (
+                                <AccordionItem key={index} value={`item-${index}`}>
+                                    <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                                    <AccordionContent>
+                                        <p className="text-muted-foreground">{faq.answer}</p>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+                    </div>
+                </div>
 
                 {/* Info Section */}
                 <Separator className="my-8" />
