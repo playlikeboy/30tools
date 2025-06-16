@@ -1,8 +1,8 @@
 {
     "metadata": {
-        "version": "5.0",
+        "version": "5.1",
         "lastUpdated": "2025-06-16",
-        "totalTools": 75,
+        "totalTools": 77,
         "totalCategories": 11
     },
     "categories": {
@@ -42,6 +42,30 @@
                     "description": "Remove image backgrounds automatically with AI",
                     "route": "/background-remover",
                     "popular": true,
+                    "category": "image"
+                },
+                {
+                    "id": "image-editor",
+                    "name": "Image Editor",
+                    "description": "Edit images online with filters, effects, and basic editing tools",
+                    "route": "/image-editor",
+                    "popular": true,
+                    "category": "image"
+                },
+                {
+                    "id": "photo-enhancer",
+                    "name": "Photo Enhancer",
+                    "description": "Enhance photo quality with AI-powered image enhancement",
+                    "route": "/photo-enhancer",
+                    "popular": true,
+                    "category": "image"
+                },
+                {
+                    "id": "image-cropper",
+                    "name": "Image Cropper",
+                    "description": "Crop images to specific dimensions or aspect ratios",
+                    "route": "/image-cropper",
+                    "popular": false,
                     "category": "image"
                 }
             ]
@@ -123,6 +147,30 @@
                     "route": "/pdf-add-page-numbers",
                     "popular": false,
                     "category": "pdf"
+                },
+                {
+                    "id": "pdf-editor",
+                    "name": "PDF Editor",
+                    "description": "Edit PDF text, add annotations, and modify content",
+                    "route": "/pdf-editor",
+                    "popular": true,
+                    "category": "pdf"
+                },
+                {
+                    "id": "word-to-pdf",
+                    "name": "Word to PDF",
+                    "description": "Convert Word documents to PDF format",
+                    "route": "/word-to-pdf",
+                    "popular": true,
+                    "category": "pdf"
+                },
+                {
+                    "id": "pdf-to-word",
+                    "name": "PDF to Word",
+                    "description": "Convert PDF files to editable Word documents",
+                    "route": "/pdf-to-word",
+                    "popular": true,
+                    "category": "pdf"
                 }
             ]
         },
@@ -130,7 +178,7 @@
             "name": "Video Tools",
             "slug": "video-tools",
             "icon": "VideoIcon",
-            "description": "Compress videos and convert to GIF format",
+            "description": "Compress videos, convert formats, and create GIFs",
             "tools": [
                 {
                     "id": "video-compressor",
@@ -145,6 +193,38 @@
                     "name": "Video to GIF",
                     "description": "Convert videos to animated GIFs",
                     "route": "/video-to-gif",
+                    "popular": true,
+                    "category": "video"
+                },
+                {
+                    "id": "video-converter",
+                    "name": "Video Converter",
+                    "description": "Convert videos between different formats (MP4, AVI, MOV)",
+                    "route": "/video-converter",
+                    "popular": true,
+                    "category": "video"
+                },
+                {
+                    "id": "video-editor",
+                    "name": "Video Editor",
+                    "description": "Basic video editing - trim, cut, and merge videos",
+                    "route": "/video-editor",
+                    "popular": true,
+                    "category": "video"
+                },
+                {
+                    "id": "video-trimmer",
+                    "name": "Video Trimmer",
+                    "description": "Trim and cut video clips to specific lengths",
+                    "route": "/video-trimmer",
+                    "popular": false,
+                    "category": "video"
+                },
+                {
+                    "id": "screen-recorder",
+                    "name": "Screen Recorder",
+                    "description": "Record your screen and save as video file",
+                    "route": "/screen-recorder",
                     "popular": true,
                     "category": "video"
                 }
@@ -169,6 +249,30 @@
                     "name": "Audio Converter",
                     "description": "Convert audio between formats (MP3, WAV, FLAC)",
                     "route": "/audio-converter",
+                    "popular": true,
+                    "category": "audio"
+                },
+                {
+                    "id": "audio-editor",
+                    "name": "Audio Editor",
+                    "description": "Edit audio files - trim, merge, and apply effects",
+                    "route": "/audio-editor",
+                    "popular": true,
+                    "category": "audio"
+                },
+                {
+                    "id": "audio-trimmer",
+                    "name": "Audio Trimmer",
+                    "description": "Trim and cut audio clips to specific lengths",
+                    "route": "/audio-trimmer",
+                    "popular": false,
+                    "category": "audio"
+                },
+                {
+                    "id": "voice-recorder",
+                    "name": "Voice Recorder",
+                    "description": "Record voice and audio directly in your browser",
+                    "route": "/voice-recorder",
                     "popular": true,
                     "category": "audio"
                 }
@@ -237,28 +341,60 @@
                     "category": "text"
                 },
                 {
-                    "id": "text-to-speech",
-                    "name": "Text to Speech",
-                    "description": "Convert text to natural-sounding speech with voice options",
-                    "route": "/text-to-speech",
-                    "popular": true,
-                    "category": "text"
-                },
-                {
-                    "id": "duplicate-text-remover",
-                    "name": "Duplicate Text Remover",
-                    "description": "Remove duplicate lines and text from content",
-                    "route": "/duplicate-text-remover",
+                    "id": "text-diff",
+                    "name": "Text Diff Checker",
+                    "description": "Compare two texts and find differences",
+                    "route": "/text-diff",
                     "popular": false,
                     "category": "text"
                 },
                 {
-                    "id": "text-diff-checker",
-                    "name": "Text Diff Checker",
-                    "description": "Compare two texts and highlight differences",
-                    "route": "/text-diff-checker",
-                    "popular": true,
+                    "id": "text-formatter",
+                    "name": "Text Formatter",
+                    "description": "Format and clean up text with various options",
+                    "route": "/text-formatter",
+                    "popular": false,
                     "category": "text"
+                }
+            ]
+        },
+        "converter": {
+            "name": "File Converters",
+            "slug": "file-converters",
+            "icon": "RefreshCwIcon",
+            "description": "Convert files between different formats and types",
+            "tools": [
+                {
+                    "id": "file-converter",
+                    "name": "Universal File Converter",
+                    "description": "Convert files between various formats automatically",
+                    "route": "/file-converter",
+                    "popular": true,
+                    "category": "converter"
+                },
+                {
+                    "id": "document-converter",
+                    "name": "Document Converter",
+                    "description": "Convert between document formats (DOC, DOCX, PDF, TXT)",
+                    "route": "/document-converter",
+                    "popular": true,
+                    "category": "converter"
+                },
+                {
+                    "id": "epub-converter",
+                    "name": "EPUB Converter",
+                    "description": "Convert documents to EPUB format for e-readers",
+                    "route": "/epub-converter",
+                    "popular": false,
+                    "category": "converter"
+                },
+                {
+                    "id": "html-to-pdf",
+                    "name": "HTML to PDF",
+                    "description": "Convert HTML pages and content to PDF",
+                    "route": "/html-to-pdf",
+                    "popular": true,
+                    "category": "converter"
                 }
             ]
         },
@@ -305,6 +441,30 @@
                     "name": "Advanced Regex Tester",
                     "description": "Test and validate regular expressions with advanced features",
                     "route": "/regex-tester2",
+                    "popular": false,
+                    "category": "developer"
+                },
+                {
+                    "id": "api-tester",
+                    "name": "API Tester",
+                    "description": "Test REST APIs and HTTP requests",
+                    "route": "/api-tester",
+                    "popular": true,
+                    "category": "developer"
+                },
+                {
+                    "id": "jwt-decoder",
+                    "name": "JWT Decoder",
+                    "description": "Decode and verify JSON Web Tokens",
+                    "route": "/jwt-decoder",
+                    "popular": true,
+                    "category": "developer"
+                },
+                {
+                    "id": "url-encoder",
+                    "name": "URL Encoder/Decoder",
+                    "description": "Encode and decode URLs and query parameters",
+                    "route": "/url-encoder",
                     "popular": false,
                     "category": "developer"
                 }
@@ -355,6 +515,22 @@
                     "route": "/regex-tester",
                     "popular": false,
                     "category": "code"
+                },
+                {
+                    "id": "sql-formatter",
+                    "name": "SQL Formatter",
+                    "description": "Format and beautify SQL queries",
+                    "route": "/sql-formatter",
+                    "popular": false,
+                    "category": "code"
+                },
+                {
+                    "id": "xml-formatter",
+                    "name": "XML Formatter",
+                    "description": "Format and validate XML documents",
+                    "route": "/xml-formatter",
+                    "popular": false,
+                    "category": "code"
                 }
             ]
         },
@@ -395,6 +571,22 @@
                     "route": "/favicon-generator",
                     "popular": false,
                     "category": "design"
+                },
+                {
+                    "id": "logo-maker",
+                    "name": "Logo Maker",
+                    "description": "Create simple logos and brand graphics",
+                    "route": "/logo-maker",
+                    "popular": true,
+                    "category": "design"
+                },
+                {
+                    "id": "css-box-shadow",
+                    "name": "CSS Box Shadow Generator",
+                    "description": "Generate CSS box-shadow effects visually",
+                    "route": "/css-box-shadow",
+                    "popular": false,
+                    "category": "design"
                 }
             ]
         },
@@ -429,35 +621,27 @@
                     "category": "utilities"
                 },
                 {
-                    "id": "random-number-generator",
-                    "name": "Random Number Generator",
-                    "description": "Generate random numbers with custom ranges",
-                    "route": "/random-number-generator",
-                    "popular": true,
-                    "category": "utilities"
-                },
-                {
-                    "id": "dice-roller",
-                    "name": "Dice Roller",
-                    "description": "Roll virtual dice with custom sides and quantities",
-                    "route": "/dice-roller",
+                    "id": "timestamp-converter",
+                    "name": "Timestamp Converter",
+                    "description": "Convert between Unix timestamps and readable dates",
+                    "route": "/timestamp-converter",
                     "popular": false,
                     "category": "utilities"
                 },
                 {
-                    "id": "stopwatch",
-                    "name": "Online Stopwatch",
-                    "description": "Precise stopwatch and timer for activities",
-                    "route": "/stopwatch",
+                    "id": "calculator",
+                    "name": "Advanced Calculator",
+                    "description": "Scientific calculator with advanced functions",
+                    "route": "/calculator",
                     "popular": true,
                     "category": "utilities"
                 },
                 {
-                    "id": "countdown-timer",
-                    "name": "Countdown Timer",
-                    "description": "Set countdown timers for events and activities",
-                    "route": "/countdown-timer",
-                    "popular": true,
+                    "id": "random-generator",
+                    "name": "Random Generator",
+                    "description": "Generate random numbers, strings, and data",
+                    "route": "/random-generator",
+                    "popular": false,
                     "category": "utilities"
                 }
             ]
@@ -485,92 +669,44 @@
                     "category": "seo"
                 },
                 {
+                    "id": "youtube-tag-generator",
+                    "name": "YouTube Tag Generator",
+                    "description": "Generate optimized YouTube tags to boost video SEO and discoverability",
+                    "route": "/youtube-tag-generator",
+                    "popular": true,
+                    "category": "seo"
+                },
+                {
+                    "id": "tiktok-tag-generator",
+                    "name": "TikTok Hashtag Generator",
+                    "description": "Generate trending TikTok hashtags to boost video reach and engagement",
+                    "route": "/tiktok-tag-generator",
+                    "popular": true,
+                    "category": "seo"
+                },
+                {
                     "id": "website-analyzer",
                     "name": "Website Analyzer",
                     "description": "Analyze website performance, SEO, and technical details",
                     "route": "/website-analyzer",
                     "popular": false,
                     "category": "seo"
-                }
-            ]
-        },
-        "converter": {
-            "name": "File Converters",
-            "slug": "file-converters",
-            "icon": "RefreshCwIcon",
-            "description": "Convert between different file formats",
-            "tools": [
-                {
-                    "id": "webp-to-jpg",
-                    "name": "WebP to JPG Converter",
-                    "description": "Convert WebP images to JPG format",
-                    "route": "/webp-to-jpg",
-                    "popular": true,
-                    "category": "converter"
                 },
                 {
-                    "id": "heic-to-jpg",
-                    "name": "HEIC to JPG Converter",
-                    "description": "Convert iPhone HEIC photos to JPG",
-                    "route": "/heic-to-jpg",
-                    "popular": true,
-                    "category": "converter"
-                },
-                {
-                    "id": "svg-to-png",
-                    "name": "SVG to PNG Converter",
-                    "description": "Convert SVG vector graphics to PNG images",
-                    "route": "/svg-to-png",
-                    "popular": true,
-                    "category": "converter"
-                },
-                {
-                    "id": "mp4-to-mp3",
-                    "name": "MP4 to MP3 Converter",
-                    "description": "Extract audio from MP4 videos as MP3",
-                    "route": "/mp4-to-mp3",
-                    "popular": true,
-                    "category": "converter"
-                },
-                {
-                    "id": "youtube-thumbnail-downloader",
-                    "name": "YouTube Thumbnail Downloader",
-                    "description": "Download YouTube video thumbnails in HD",
-                    "route": "/youtube-thumbnail-downloader",
-                    "popular": true,
-                    "category": "converter"
-                }
-            ]
-        },
-        "security": {
-            "name": "Security Tools",
-            "slug": "security-tools",
-            "icon": "ShieldIcon",
-            "description": "Encrypt, decrypt, and secure your data",
-            "tools": [
-                {
-                    "id": "file-encryptor",
-                    "name": "File Encryptor",
-                    "description": "Encrypt files with AES-256 encryption",
-                    "route": "/file-encryptor",
-                    "popular": true,
-                    "category": "security"
-                },
-                {
-                    "id": "text-encryptor",
-                    "name": "Text Encryptor",
-                    "description": "Encrypt and decrypt text messages securely",
-                    "route": "/text-encryptor",
+                    "id": "sitemap-generator",
+                    "name": "Sitemap Generator",
+                    "description": "Generate XML sitemaps for websites",
+                    "route": "/sitemap-generator",
                     "popular": false,
-                    "category": "security"
+                    "category": "seo"
                 },
                 {
-                    "id": "secure-note-generator",
-                    "name": "Secure Note Generator",
-                    "description": "Create self-destructing secure notes",
-                    "route": "/secure-note-generator",
+                    "id": "keyword-density",
+                    "name": "Keyword Density Checker",
+                    "description": "Check keyword density and frequency in text",
+                    "route": "/keyword-density",
                     "popular": false,
-                    "category": "security"
+                    "category": "seo"
                 }
             ]
         }
