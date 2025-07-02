@@ -45,11 +45,18 @@ export default function PDFToolsNavbar() {
               ))}
             </div>
             
-            <Link href="/search">
-              <Button variant="outline" size="sm" className="btn-cute">
-                All Tools
-              </Button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link href="/other-tools">
+                <Button variant="ghost" size="sm" className="btn-cute">
+                  Other Tools
+                </Button>
+              </Link>
+              <Link href="/search">
+                <Button variant="outline" size="sm" className="btn-cute">
+                  All Tools
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile menu button */}
