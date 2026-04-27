@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import * as pdfjsLib from "pdfjs-dist";
 import JSZip from "jszip";
 import { 
     Upload, 
@@ -23,8 +22,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 
-// Set up the worker for pdf.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+declare global {
+    interface Window {
+        pdfjsLib: any;
+    }
+}
 
 interface PageImage {
     pageNumber: number;
@@ -33,6 +35,7 @@ interface PageImage {
 }
 
 export default function PDFToImage() {
+    const [pdfjs, setPdfjs] = useState<any>(null);
     const [file, setFile] = useState<File | null>(null);
     const [pages, setPages] = useState<PageImage[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -40,6 +43,25 @@ export default function PDFToImage() {
     const [format, setFormat] = useState<"png" | "jpeg" | "webp">("png");
     const [scale, setScale] = useState<string>("2");
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const loadPdfJs = async () => {
+            if (window.pdfjsLib) {
+                setPdfjs(window.pdfjsLib);
+                return;
+            }
+
+            const script = document.createElement("script");
+            script.src = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js";
+            script.async = true;
+            script.onload = () => {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+                setPdfjs(window.pdfjsLib);
+            };
+            document.head.appendChild(script);
+        };
+        loadPdfJs();
+    }, []);
 
     const onFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0];
@@ -50,14 +72,18 @@ export default function PDFToImage() {
         } else if (selectedFile) {
             toast.error("Please select a valid PDF file");
         }
-    }, []);
+    }, [pdfjs]);
 
     const loadPdf = async (pdfFile: File) => {
+        if (!pdfjs) {
+            toast.error("PDF Library is still loading. Please try again in a moment.");
+            return;
+        }
         setIsProcessing(true);
         setProgress(0);
         try {
             const arrayBuffer = await pdfFile.arrayBuffer();
-            const loadingTask = pdfjsLib.getDocument(arrayBuffer);
+            const loadingTask = pdfjs.getDocument(arrayBuffer);
             const pdf = await loadingTask.promise;
             
             const numPages = pdf.numPages;
@@ -105,6 +131,7 @@ export default function PDFToImage() {
     const selectNone = () => setPages(prev => prev.map(p => ({ ...p, selected: false })));
 
     const exportImages = async () => {
+        if (!pdfjs) return;
         const selectedPages = pages.filter(p => p.selected);
         if (selectedPages.length === 0) {
             toast.error("Please select at least one page");
@@ -115,7 +142,7 @@ export default function PDFToImage() {
         setProgress(0);
         try {
             const arrayBuffer = await file!.arrayBuffer();
-            const loadingTask = pdfjsLib.getDocument(arrayBuffer);
+            const loadingTask = pdfjs.getDocument(arrayBuffer);
             const pdf = await loadingTask.promise;
             const zip = new JSZip();
 
@@ -190,6 +217,11 @@ export default function PDFToImage() {
                         <p className="text-sm text-muted-foreground">Convert PDF pages into high-quality image files</p>
                     </div>
                 </div>
+                {!pdfjs && (
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Loader2 className="h-3 w-3 animate-spin" /> Loading Engine...
+                    </div>
+                )}
                 <div className="flex items-center gap-2">
                     <Button 
                         variant="outline" 
@@ -199,7 +231,7 @@ export default function PDFToImage() {
                         <Upload className="mr-2 h-4 w-4" /> Change PDF
                     </Button>
                     <Button 
-                        disabled={pages.length === 0 || isProcessing}
+                        disabled={pages.length === 0 || isProcessing || !pdfjs}
                         onClick={exportImages}
                         className="rounded-none bg-primary hover:bg-primary/90"
                     >
@@ -334,7 +366,7 @@ export default function PDFToImage() {
                                 </div>
                                 <Button 
                                     className="w-full rounded-none h-12 font-bold uppercase tracking-widest"
-                                    disabled={pages.length === 0 || isProcessing}
+                                    disabled={pages.length === 0 || isProcessing || !pdfjs}
                                     onClick={exportImages}
                                 >
                                     {isProcessing ? `Exporting ${progress}%` : "Download Images"}
@@ -357,5 +389,27 @@ export default function PDFToImage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+function FileImage({ className }: { className?: string }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+        >
+            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+            <circle cx="10" cy="12" r="2" />
+            <path d="m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22" />
+        </svg>
     );
 }
